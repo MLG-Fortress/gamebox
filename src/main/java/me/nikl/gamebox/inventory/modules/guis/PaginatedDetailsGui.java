@@ -13,9 +13,8 @@ import me.nikl.gamebox.module.cloud.CloudService;
 import me.nikl.gamebox.module.data.CloudModuleData;
 import me.nikl.gamebox.module.data.CloudModuleDataWithVersions;
 import me.nikl.gamebox.module.data.VersionData;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import me.nikl.gamebox.utility.versioning.SemanticVersion;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryAction;
@@ -36,7 +35,6 @@ public class PaginatedDetailsGui {
     private GuiManager guiManager;
     private List<ModuleDetailsPage> pages = new ArrayList<>();
     private int gridSize = 54;
-    private NmsUtility nms = NmsFactory.getNmsUtility();
     private CloudModuleDataWithVersions data;
     private CloudService cloudService;
     private long lastApiCall = 0L;
@@ -121,7 +119,7 @@ public class PaginatedDetailsGui {
             Map<String, String> context = getVersionContext(version);
             ItemStack book = new ItemStack(Material.BOOK);
             if (version.getVersion().equals(installedVersion)) {
-                book = nms.addGlow(book);
+                book = PurpurCompatibility.addGlow(book);
             }
             Button versionButton = new Button(book);
             ItemMeta meta = versionButton.getItemMeta();

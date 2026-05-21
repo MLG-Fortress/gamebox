@@ -58,7 +58,6 @@
                     <artifactSet>
                         <includes>
                             <include>org.bstats:*</include>
-                            <include>me.nikl.nmsutilities:*</include>
                             <include>com.zaxxer:*</include>
                             <include>org.slf4j:*</include>
                             <include>co.aikar:*</include>
@@ -66,10 +65,6 @@
                         </includes>
                     </artifactSet>
                     <relocations>
-                        <relocation>
-                            <pattern>me.nikl.nmsutilities</pattern>
-                            <shadedPattern>me.nikl.gamebox.nms</shadedPattern>
-                        </relocation>
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>me.nikl.gamebox.common.bstats</shadedPattern>
@@ -151,8 +146,16 @@
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
+            <id>purpur</id>
+            <url>https://repo.purpurmc.org/snapshots</url>
+        </repository>
+        <repository>
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>minebench</id>
+            <url>https://repo.minebench.de/</url>
         </repository>
         <repository>
             <id>CodeMC</id>
@@ -187,11 +190,11 @@
     </properties>
 
     <dependencies>
-        <!--Bukkit API-->
+        <!-- Purpur API -->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.14.2-R0.1-SNAPSHOT</version>
+            <groupId>org.purpurmc.purpur</groupId>
+            <artifactId>purpur-api</artifactId>
+            <version>[26.1.2.build,)</version>
             <scope>provided</scope>
         </dependency>
         <!-- placeholderAPI -->
@@ -239,12 +242,6 @@
             <groupId>co.aikar</groupId>
             <artifactId>acf-bukkit</artifactId>
             <version>0.5.1-SNAPSHOT</version>
-        </dependency>
-        <!-- nms modules -->
-        <dependency>
-            <groupId>me.nikl.nmsutilities</groupId>
-            <artifactId>nmsutilities</artifactId>
-            <version>1.7.0</version>
         </dependency>
         <!-- other stuff -->
         <dependency>

@@ -8,7 +8,6 @@ import me.nikl.gamebox.inventory.button.AButton;
 import me.nikl.gamebox.inventory.button.Button;
 import me.nikl.gamebox.inventory.button.ButtonFactory;
 import me.nikl.gamebox.inventory.gui.AGui;
-import me.nikl.nmsutilities.NmsUtility;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -18,7 +17,6 @@ public class ModulesPage extends AGui {
     protected int pageNum;
     private int previousPageSlot = 48;
     private int nextPageSlot = 50;
-    private NmsUtility nms;
 
     public ModulesPage(GameBox plugin, GuiManager guiManager, int slots, String[] args, int pageNum, String title) {
         super(plugin, guiManager, slots, args, title);

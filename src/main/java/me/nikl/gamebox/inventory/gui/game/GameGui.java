@@ -8,7 +8,7 @@ import me.nikl.gamebox.inventory.GuiManager;
 import me.nikl.gamebox.inventory.button.Button;
 import me.nikl.gamebox.inventory.gui.AGui;
 import me.nikl.gamebox.utility.ItemStackUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -85,7 +85,7 @@ public class GameGui extends AGui {
    * @param list text that will be displayed on the button
    */
   public void setHelpButton(List<String> list) {
-    Button help = new Button(NmsFactory.getNmsUtility().addGlow(ItemStackUtility.createBookWithText(list)));
+    Button help = new Button(PurpurCompatibility.addGlow(ItemStackUtility.createBookWithText(list)));
     help.setAction(ClickAction.NOTHING);
 
     setButton(help, inventory.getSize() - 1);

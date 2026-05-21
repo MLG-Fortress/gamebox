@@ -23,8 +23,6 @@ import me.nikl.gamebox.utility.ItemStackUtility;
 import me.nikl.gamebox.utility.Permission;
 import me.nikl.gamebox.utility.Sound;
 import me.nikl.gamebox.utility.StringUtility;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -59,7 +57,6 @@ public abstract class Game {
   protected GameSettings gameSettings;
   protected GameLanguage gameLang;
   protected GameBoxLanguage gbLang;
-  protected NmsUtility nms;
   private File dataFolder;
   private File configFile;
 
@@ -68,7 +65,6 @@ public abstract class Game {
     Validate.notNull(module, " You cannot initialize a game without registering it's module first!");
     this.gameBox = gameBox;
     this.gbLang = gameBox.lang;
-    this.nms = NmsFactory.getNmsUtility();
     this.gameSettings = new GameSettings();
   }
 

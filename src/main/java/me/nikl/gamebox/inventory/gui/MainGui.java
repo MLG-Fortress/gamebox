@@ -14,7 +14,7 @@ import me.nikl.gamebox.inventory.button.ToggleButton;
 import me.nikl.gamebox.utility.InventoryUtility;
 import me.nikl.gamebox.utility.ItemStackUtility;
 import me.nikl.gamebox.utility.Permission;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -48,7 +48,7 @@ public class MainGui extends AGui implements TokenListener {
 
   public MainGui(GameBox plugin, GuiManager guiManager) {
     super(plugin, guiManager, 54, new String[]{}, plugin.lang.TITLE_MAIN_GUI);
-    Button help = new Button(NmsFactory.getNmsUtility().addGlow(ItemStackUtility.createBookWithText(plugin.lang.BUTTON_MAIN_MENU_INFO)));
+    Button help = new Button(PurpurCompatibility.addGlow(ItemStackUtility.createBookWithText(plugin.lang.BUTTON_MAIN_MENU_INFO)));
     help.setAction(ClickAction.NOTHING);
     setButton(help, 53);
     ToggleButton soundToggle = ButtonFactory.createSoundToggleButton(plugin.lang);
@@ -108,7 +108,7 @@ public class MainGui extends AGui implements TokenListener {
     }
     if (super.open(player)) {
       if (pluginManager.getGames().isEmpty()) {
-        NmsFactory.getNmsUtility().updateInventoryTitle(player, ChatColor.translateAlternateColorCodes('&', "&1No games &4:(&1 You should install some"));
+        PurpurCompatibility.updateInventoryTitle(player, ChatColor.translateAlternateColorCodes('&', "&1No games &4:(&1 You should install some"));
       }
       return true;
     }

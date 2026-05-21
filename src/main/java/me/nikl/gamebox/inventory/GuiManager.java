@@ -11,8 +11,7 @@ import me.nikl.gamebox.inventory.gui.game.GameGui;
 import me.nikl.gamebox.inventory.modules.ModulesGuiManager;
 import me.nikl.gamebox.inventory.shop.ShopManager;
 import me.nikl.gamebox.utility.Permission;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -34,7 +33,6 @@ public class GuiManager {
   public static final String MAIN_GAME_GUI = "main";
   private GameBox plugin;
   private Map<String, Map<String, GameGui>> gameGuis;
-  private NmsUtility nms;
   private GameBoxLanguage lang;
   private MainGui mainGui;
   private int titleMessageSeconds = 3;
@@ -43,7 +41,6 @@ public class GuiManager {
 
   public GuiManager(GameBox plugin) {
     this.plugin = plugin;
-    this.nms = NmsFactory.getNmsUtility();
     this.lang = plugin.lang;
     this.gameGuis = new HashMap<>();
     this.mainGui = new MainGui(plugin, this);
@@ -96,7 +93,7 @@ public class GuiManager {
       boolean opened = gui.open(whoClicked);
       GameBox.openingNewGUI = false;
       if (opened) {
-        nms.updateInventoryTitle(whoClicked, gui.getTitle().replace("%game%", plugin.getPluginManager().getGame(gameID).getGameLang().PLAIN_NAME).replace("%player%", whoClicked.getName()));
+        PurpurCompatibility.updateInventoryTitle(whoClicked, gui.getTitle().replace("%game%", plugin.getPluginManager().getGame(gameID).getGameLang().PLAIN_NAME).replace("%player%", whoClicked.getName()));
       } else {
         if (whoClicked.getOpenInventory() != null) {
           whoClicked.closeInventory();

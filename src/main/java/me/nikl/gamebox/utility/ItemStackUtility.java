@@ -1,7 +1,7 @@
 package me.nikl.gamebox.utility;
 
 import me.nikl.gamebox.GameBox;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -99,7 +99,7 @@ public class ItemStackUtility {
       meta.setLore(StringUtility.color(section.getStringList(LORE)));
     }
     if (section.getBoolean(GLOW, false)) {
-      toReturn = NmsFactory.getNmsUtility().addGlow(toReturn);
+      toReturn = PurpurCompatibility.addGlow(toReturn);
     }
     toReturn.setItemMeta(meta);
     return toReturn;

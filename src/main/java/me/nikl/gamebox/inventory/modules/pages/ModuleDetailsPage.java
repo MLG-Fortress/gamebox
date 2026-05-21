@@ -8,8 +8,7 @@ import me.nikl.gamebox.inventory.button.AButton;
 import me.nikl.gamebox.inventory.button.Button;
 import me.nikl.gamebox.inventory.button.ButtonFactory;
 import me.nikl.gamebox.inventory.gui.AGui;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,7 +24,6 @@ public class ModuleDetailsPage extends AGui {
     private int previousPageSlot = 48;
     private int nextPageSlot = 50;
     private String moduleId;
-    private NmsUtility nms = NmsFactory.getNmsUtility();
 
     public ModuleDetailsPage(GameBox plugin, GuiManager guiManager, int slots, String[] args, String moduleId, int pageNum, String title) {
         super(plugin, guiManager, slots, args, title.replaceAll("%page%", String.valueOf(pageNum)));
@@ -68,7 +66,7 @@ public class ModuleDetailsPage extends AGui {
             if (player == null) {
                 continue;
             }
-            nms.updateInventoryTitle(player, title.replaceAll("%page%", String.valueOf(pageNum)));
+            PurpurCompatibility.updateInventoryTitle(player, title.replaceAll("%page%", String.valueOf(pageNum)));
         }
     }
 

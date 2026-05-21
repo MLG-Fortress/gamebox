@@ -6,7 +6,7 @@ import me.nikl.gamebox.inventory.GuiManager;
 import me.nikl.gamebox.inventory.button.Button;
 import me.nikl.gamebox.utility.InventoryUtility;
 import me.nikl.gamebox.utility.ItemStackUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -51,7 +51,7 @@ public class StartMultiplayerGamePage extends GameGuiPage {
       loadInvites(player.getUniqueId());
     }
     if (super.open(player)) {
-      NmsFactory.getNmsUtility().updateInventoryTitle(player, gameBox.lang.TITLE_MAIN_GUI.replace("%player%", player.getName()));
+      PurpurCompatibility.updateInventoryTitle(player, gameBox.lang.TITLE_MAIN_GUI.replace("%player%", player.getName()));
       return true;
     }
     return false;

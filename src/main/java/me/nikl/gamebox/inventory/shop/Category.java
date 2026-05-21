@@ -9,7 +9,7 @@ import me.nikl.gamebox.inventory.button.ButtonFactory;
 import me.nikl.gamebox.inventory.gui.AGui;
 import me.nikl.gamebox.utility.ItemStackUtility;
 import me.nikl.gamebox.utility.StringUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
@@ -87,7 +87,7 @@ public class Category {
           itemStack.setAmount(Math.min(amount, itemStack.getMaxStackSize()));
         }
         if (pageSection.getBoolean(itemKey + ".glow", false)) {
-          itemStack = NmsFactory.getNmsUtility().addGlow(itemStack);
+          itemStack = PurpurCompatibility.addGlow(itemStack);
         }
         meta = itemStack.getItemMeta();
         if (pageSection.isString(itemKey + ".displayName")) {
@@ -182,7 +182,7 @@ public class Category {
       presentItem = new ItemStack(itemStack);
     }
     if (pageSection.getBoolean(path + ".glow", false)) {
-      presentItem = NmsFactory.getNmsUtility().addGlow(presentItem);
+      presentItem = PurpurCompatibility.addGlow(presentItem);
     }
     if (pageSection.isInt(path + ".count")) {
       presentItem.setAmount(pageSection.getInt(path + ".count"));

@@ -5,8 +5,7 @@ import me.nikl.gamebox.inventory.gui.AGui;
 import me.nikl.gamebox.inventory.gui.game.GameGui;
 import me.nikl.gamebox.inventory.gui.game.GameGuiPage;
 import me.nikl.gamebox.inventory.shop.Page;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -20,13 +19,11 @@ import java.util.UUID;
  */
 public class InventoryTitleMessenger extends BukkitRunnable {
   private GameBox gameBox;
-  private NmsUtility nmsUtility;
   private Map<UUID, Long> messageTimeStamps = new HashMap<>();
   private Map<UUID, String> resetTitles = new HashMap<>();
 
   public InventoryTitleMessenger(GameBox gameBox) {
     this.gameBox = gameBox;
-    nmsUtility = NmsFactory.getNmsUtility();
     runTaskTimer(gameBox, 10, 10);
   }
 
@@ -40,7 +37,7 @@ public class InventoryTitleMessenger extends BukkitRunnable {
           removeTitleMessage(uuid);
           continue;
         }
-        nmsUtility.updateInventoryTitle(player, resetTitles.get(uuid));
+        PurpurCompatibility.updateInventoryTitle(player, resetTitles.get(uuid));
         removeTitleMessage(uuid);
       }
     }
@@ -52,7 +49,7 @@ public class InventoryTitleMessenger extends BukkitRunnable {
   }
 
   public void sendInventoryTitle(Player player, String message, String title, int duration) {
-    nmsUtility.updateInventoryTitle(player, message);
+    PurpurCompatibility.updateInventoryTitle(player, message);
     messageTimeStamps.put(player.getUniqueId(), System.currentTimeMillis() + duration * 1000);
     resetTitles.put(player.getUniqueId(), title);
   }

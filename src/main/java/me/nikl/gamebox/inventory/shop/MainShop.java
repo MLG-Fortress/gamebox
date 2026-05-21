@@ -6,7 +6,7 @@ import me.nikl.gamebox.inventory.GuiManager;
 import me.nikl.gamebox.inventory.button.Button;
 import me.nikl.gamebox.utility.ItemStackUtility;
 import me.nikl.gamebox.utility.StringUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
@@ -39,7 +39,7 @@ class MainShop extends Shop {
         continue;
       }
       if (category.getBoolean("glow")) {
-        buttonItem = NmsFactory.getNmsUtility().addGlow(buttonItem);
+        buttonItem = PurpurCompatibility.addGlow(buttonItem);
       }
       Button button = new Button(buttonItem);
       ItemMeta meta = button.getItemMeta();

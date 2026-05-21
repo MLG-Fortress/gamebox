@@ -11,7 +11,7 @@ import me.nikl.gamebox.inventory.gui.AGui;
 import me.nikl.gamebox.utility.ItemStackUtility;
 import me.nikl.gamebox.utility.Permission;
 import me.nikl.gamebox.utility.StringUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -69,7 +69,7 @@ public class ShopManager {
   private void loadShopButton() {
     ItemStack mainItem = ItemStackUtility.getItemStack(shop.getString("shop.button.materialData", ItemStackUtility.CHEST_MINECART.toString()));
     if (shop.getBoolean("shop.button.glow"))
-      mainItem = NmsFactory.getNmsUtility().addGlow(mainItem);
+      mainItem = PurpurCompatibility.addGlow(mainItem);
     mainButton = new Button(mainItem);
     ItemMeta meta = mainItem.getItemMeta();
     if (shop.isString("shop.button.displayName")) {
@@ -132,9 +132,9 @@ public class ShopManager {
       GameBox.openingNewGUI = false;
 
       if (closed) {
-        NmsFactory.getNmsUtility().updateInventoryTitle(whoClicked, gameBox.lang.SHOP_IS_CLOSED);
+        PurpurCompatibility.updateInventoryTitle(whoClicked, gameBox.lang.SHOP_IS_CLOSED);
       } else {
-        NmsFactory.getNmsUtility().updateInventoryTitle(whoClicked, gameBox.lang.SHOP_TITLE_MAIN_SHOP.replace("%player%", whoClicked.getDisplayName()));
+        PurpurCompatibility.updateInventoryTitle(whoClicked, gameBox.lang.SHOP_TITLE_MAIN_SHOP.replace("%player%", whoClicked.getDisplayName()));
       }
       return true;
     } else if (categories.containsKey(args[0])) {
@@ -149,7 +149,7 @@ public class ShopManager {
       boolean open = categories.get(args[0]).openPage(whoClicked, page);
       GameBox.openingNewGUI = false;
       if (open) {
-        NmsFactory.getNmsUtility().updateInventoryTitle(whoClicked, gameBox.lang.SHOP_TITLE_PAGE_SHOP.replace("%page%", String.valueOf(page + 1)));
+        PurpurCompatibility.updateInventoryTitle(whoClicked, gameBox.lang.SHOP_TITLE_PAGE_SHOP.replace("%page%", String.valueOf(page + 1)));
         return true;
       } else {
         return false;

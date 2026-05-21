@@ -20,7 +20,6 @@ import me.nikl.gamebox.module.data.CloudModuleData;
 import me.nikl.gamebox.module.local.VersionedModule;
 import me.nikl.gamebox.utility.ConfigManager;
 import me.nikl.gamebox.utility.FileUtility;
-import me.nikl.nmsutilities.NmsFactory;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -75,11 +74,6 @@ public class GameBox extends JavaPlugin {
   @Override
   public void onEnable() {
     GameBoxSettings.defineGameBoxData(this);
-    if ((NmsFactory.getNmsUtility()) == null) {
-      sendVersionError();
-      Bukkit.getPluginManager().disablePlugin(this);
-      return;
-    }
 
     this.gameRegistry = new GameRegistry(this);
 
@@ -379,14 +373,6 @@ public class GameBox extends JavaPlugin {
       calendarEventsHook = new CalendarEventsHook(this);
       Bukkit.getConsoleSender().sendMessage(lang.PREFIX + " Hooked into CalendarEvents");
     }
-  }
-
-  private void sendVersionError() {
-    Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - +");
-    Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " Your server version is not compatible with this plugin!");
-    Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "   Please make sure that you have the newest version:");
-    Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "   https://www.spigotmc.org/resources/37273/");
-    Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "+ - + - + - + - + - + - + - + - + - + - + - + - + - + - +");
   }
 
   public GameBoxAPI getApi() {

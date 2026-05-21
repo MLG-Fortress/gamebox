@@ -15,9 +15,8 @@ import me.nikl.gamebox.inventory.modules.guis.PaginatedGui;
 import me.nikl.gamebox.module.data.CloudModuleData;
 import me.nikl.gamebox.module.local.VersionedModule;
 import me.nikl.gamebox.utility.Permission;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import me.nikl.gamebox.utility.versioning.SemanticVersion;
-import me.nikl.nmsutilities.NmsFactory;
-import me.nikl.nmsutilities.NmsUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -31,7 +30,6 @@ import java.util.*;
 import java.util.logging.Level;
 
 public class ModulesGuiManager implements Listener {
-    private NmsUtility nms = NmsFactory.getNmsUtility();
     private GameBox gameBox;
     private Button mainButton;
     private GuiManager guiManager;
@@ -151,7 +149,7 @@ public class ModulesGuiManager implements Listener {
         ItemStack icon = new ItemStack(Material.BOOK);
         if (installedVersion != null) {
             context.put("moduleInstalledVersion", installedVersion.toString());
-            icon = nms.addGlow(icon);
+            icon = PurpurCompatibility.addGlow(icon);
         }
         Button button = new Button(icon);
         ItemMeta meta = button.getItemMeta();
@@ -171,7 +169,7 @@ public class ModulesGuiManager implements Listener {
     private Button buildPrivateModuleButton(Map<String, String> context, String id, SemanticVersion installedVersion) {
         ItemStack icon = new ItemStack(Material.BOOK);
         context.put("moduleInstalledVersion", installedVersion.toString());
-        icon = nms.addGlow(icon);
+        icon = PurpurCompatibility.addGlow(icon);
         Button button = new Button(icon);
         ItemMeta meta = button.getItemMeta();
         meta.setDisplayName(gameBox.lang.replaceContext(gameBox.lang.MODULE_PRIVATE_BUTTON_NAME, context));

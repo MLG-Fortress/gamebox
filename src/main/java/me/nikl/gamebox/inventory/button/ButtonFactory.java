@@ -3,7 +3,7 @@ package me.nikl.gamebox.inventory.button;
 import me.nikl.gamebox.GameBoxLanguage;
 import me.nikl.gamebox.inventory.ClickAction;
 import me.nikl.gamebox.utility.ItemStackUtility;
-import me.nikl.nmsutilities.NmsFactory;
+import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -20,7 +20,7 @@ public class ButtonFactory {
 
   public static DisplayButton createTokenButton(GameBoxLanguage language, int token) {
     ItemStack tokensItem = new ItemStack(Material.GOLD_NUGGET, 1);
-    tokensItem = NmsFactory.getNmsUtility().addGlow(tokensItem);
+    tokensItem = PurpurCompatibility.addGlow(tokensItem);
     DisplayButton tokenButton = new DisplayButton(tokensItem, language.BUTTON_TOKENS, new ArrayList<>());
     return tokenButton.update("%tokens%", token);
   }

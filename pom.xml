@@ -45,9 +45,8 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>**/*.yml</include>
-                    <include>certificates/*.pem</include>
-                </includes>
-            </resource>
+                        </includes>
+                    </resource>
         </resources>
         <plugins>
             <plugin>

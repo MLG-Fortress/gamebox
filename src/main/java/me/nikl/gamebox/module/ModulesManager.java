@@ -25,7 +25,6 @@ import me.nikl.gamebox.events.modules.ModuleRemovedEvent;
 import me.nikl.gamebox.exceptions.module.CloudModuleVersionNotFoundException;
 import me.nikl.gamebox.exceptions.module.GameBoxCloudException;
 import me.nikl.gamebox.exceptions.module.InvalidModuleException;
-import me.nikl.gamebox.module.cloud.CloudFacade;
 import me.nikl.gamebox.module.cloud.CloudService;
 import me.nikl.gamebox.module.data.VersionedCloudModule;
 import me.nikl.gamebox.module.local.LocalModule;
@@ -144,25 +143,8 @@ public class ModulesManager implements Listener {
     }
 
     private void connectToCloud() {
-        this.cloudService = new CloudService(gameBox, new CloudFacade());
-        BukkitRunnable hookAfterConnectingToCloud = new BukkitRunnable() {
-            @Override
-            public void run() {
-                gameBox.hookAfterConnectingToCloud();
-            }
-        };
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    cloudService.cacheCloudContent();
-                    hookAfterConnectingToCloud.runTask(gameBox);
-                } catch (GameBoxCloudException e) {
-                    gameBox.getLogger().severe("Error while attempting to load cloud content");
-                    e.printStackTrace();
-                }
-            }
-        }.runTaskAsynchronously(gameBox);
+        this.cloudService = new CloudService(gameBox);
+        gameBox.hookAfterConnectingToCloud();
     }
 
     private void prepareFiles() {

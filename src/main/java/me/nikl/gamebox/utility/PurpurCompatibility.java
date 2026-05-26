@@ -31,6 +31,15 @@ public final class PurpurCompatibility {
     return itemStack;
   }
 
+  public static ItemStack removeGlow(ItemStack itemStack) {
+    if (itemStack == null) return null;
+    ItemMeta meta = itemStack.getItemMeta();
+    if (meta == null) return itemStack;
+    meta.setEnchantmentGlintOverride(false);
+    itemStack.setItemMeta(meta);
+    return itemStack;
+  }
+
   @SuppressWarnings("deprecation")
   public static void updateInventoryTitle(Player player, String title) {
     if (player == null || title == null) return;

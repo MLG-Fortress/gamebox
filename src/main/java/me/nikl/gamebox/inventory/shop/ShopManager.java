@@ -13,6 +13,7 @@ import me.nikl.gamebox.utility.Permission;
 import me.nikl.gamebox.utility.StringUtility;
 import me.nikl.gamebox.utility.PurpurCompatibility;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -67,7 +68,16 @@ public class ShopManager {
   }
 
   private void loadShopButton() {
-    ItemStack mainItem = ItemStackUtility.getItemStack(shop.getString("shop.button.materialData", ItemStackUtility.CHEST_MINECART.toString()));
+    String materialData = shop.getString("shop.button.materialData", ItemStackUtility.CHEST_MINECART.toString());
+    ItemStack mainItem = ItemStackUtility.getItemStack(materialData);
+    if (mainItem == null) {
+      Bukkit.getLogger().log(Level.WARNING, "Invalid shop button materialData '" + materialData + "' in tokenShop.yml. Using CHEST_MINECART instead.");
+      mainItem = ItemStackUtility.getItemStack(ItemStackUtility.CHEST_MINECART.toString());
+    }
+    if (mainItem == null) {
+      Bukkit.getLogger().log(Level.WARNING, "Failed to load fallback shop button material CHEST_MINECART. Using CHEST instead.");
+      mainItem = new ItemStack(Material.CHEST);
+    }
     if (shop.getBoolean("shop.button.glow"))
       mainItem = PurpurCompatibility.addGlow(mainItem);
     mainButton = new Button(mainItem);

@@ -144,7 +144,6 @@ public class ModulesManager implements Listener {
 
     private void connectToCloud() {
         this.cloudService = new CloudService(gameBox);
-        gameBox.hookAfterConnectingToCloud();
     }
 
     private void prepareFiles() {

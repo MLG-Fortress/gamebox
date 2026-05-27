@@ -27,7 +27,9 @@ import org.yaml.snakeyaml.representer.Representer;
 
 public class GameBoxYmlBuilder {
     public static Yaml buildLocalModuleDataYml() {
-        CustomClassLoaderConstructor constructor = new CustomClassLoaderConstructor(LocalModuleData.class.getClassLoader(), new LoaderOptions());
+        LoaderOptions loaderOptions = new LoaderOptions();
+        loaderOptions.setTagInspector(tag -> true);
+        CustomClassLoaderConstructor constructor = new CustomClassLoaderConstructor(LocalModuleData.class.getClassLoader(), loaderOptions);
         Representer representer = new Representer(new DumperOptions());
         representer.getPropertyUtils().setSkipMissingProperties(true);
         return new Yaml(constructor, representer);

@@ -66,7 +66,7 @@ public class GameBox extends JavaPlugin {
   private ModulesManager modulesManager;
 
   public static void debug(String message) {
-    if (debug) Bukkit.getConsoleSender().sendMessage(message);
+    if (debug) JavaPlugin.getPlugin(GameBox.class).getLogger().info(ChatColor.stripColor(message));
   }
 
   @Override
@@ -344,14 +344,14 @@ public class GameBox extends JavaPlugin {
   private void establishHooksAndMetric() {
     if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
       new PlaceholderAPIHook(this);
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + " Hooked into PlaceholderAPI");
+      getLogger().info(ChatColor.stripColor(lang.PREFIX + " Hooked into PlaceholderAPI"));
     }
     hookCalendarEvents();
     // send data with bStats if not opt out
     if (GameBoxSettings.bStatsMetrics) {
       setupMetrics();
     } else {
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + " You have opt out bStats... That's sad!");
+      getLogger().info(ChatColor.stripColor(lang.PREFIX + " You have opt out bStats... That's sad!"));
     }
   }
 
@@ -370,7 +370,7 @@ public class GameBox extends JavaPlugin {
         return;
       }
       calendarEventsHook = new CalendarEventsHook(this);
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + " Hooked into CalendarEvents");
+      getLogger().info(ChatColor.stripColor(lang.PREFIX + " Hooked into CalendarEvents"));
     }
   }
 
@@ -395,7 +395,7 @@ public class GameBox extends JavaPlugin {
   }
 
   public void info(String message) {
-    Bukkit.getConsoleSender().sendMessage(lang.PREFIX + message);
+    getLogger().info(ChatColor.stripColor(lang.PREFIX + message));
   }
 
   public GameRegistry getGameRegistry() {

@@ -97,7 +97,7 @@ public abstract class AGui implements GameBoxHolder {
   public boolean action(InventoryClickEvent event, ClickAction action, String[] args) {
 
     if (GameBox.debug)
-      Bukkit.getConsoleSender().sendMessage("action called: " + action.toString()
+      gameBox.getLogger().info("action called: " + action.toString()
               + " with the args: " + (args == null ? "" : Arrays.asList(args)));
     switch (action) {
       case OPEN_GAME_GUI:
@@ -240,7 +240,7 @@ public abstract class AGui implements GameBoxHolder {
 
       case SHOW_TOP_LIST:
         if (args.length != 2) {
-          Bukkit.getLogger().log(Level.WARNING, "show top list click has the wrong number of arguments: " + args.length);
+      gameBox.getLogger().log(Level.WARNING, "show top list click has the wrong number of arguments: " + args.length);
           return false;
         }
         if (guiManager.openGameGui((Player) event.getWhoClicked(), args)) {
@@ -251,7 +251,7 @@ public abstract class AGui implements GameBoxHolder {
 
       case OPEN_SHOP_PAGE:
         if (args.length != 2) {
-          Bukkit.getLogger().log(Level.WARNING, "OPEN_SHOP_PAGE has the wrong number of arguments: " + args.length);
+          gameBox.getLogger().log(Level.WARNING, "OPEN_SHOP_PAGE has the wrong number of arguments: " + args.length);
           return false;
         }
         if (guiManager.openShopPage((Player) event.getWhoClicked(), args)) {
@@ -262,7 +262,7 @@ public abstract class AGui implements GameBoxHolder {
 
       case OPEN_MODULES_PAGE:
         if (args.length != 1) {
-          Bukkit.getLogger().log(Level.WARNING, "OPEN_MODULES_PAGE has the wrong number of arguments: " + args.length);
+          gameBox.getLogger().log(Level.WARNING, "OPEN_MODULES_PAGE has the wrong number of arguments: " + args.length);
           return false;
         }
         if (guiManager.openModulesPage((Player) event.getWhoClicked(), args)) {
@@ -273,7 +273,7 @@ public abstract class AGui implements GameBoxHolder {
 
       case OPEN_MODULE_DETAILS:
         if (args.length != 1 && args.length != 2) {
-          Bukkit.getLogger().log(Level.WARNING, "OPEN_MODULE_DETAILS has the wrong number of arguments: " + args.length);
+          gameBox.getLogger().log(Level.WARNING, "OPEN_MODULE_DETAILS has the wrong number of arguments: " + args.length);
           return false;
         }
         if (args.length == 2 && guiManager.openModuleDetails((Player) event.getWhoClicked(), args)) {
@@ -312,7 +312,7 @@ public abstract class AGui implements GameBoxHolder {
 
       case DISPATCH_PLAYER_COMMAND:
         if (args.length != 1) {
-          Bukkit.getLogger().log(Level.WARNING, "DISPATCH_PLAYER_COMMAND has the wrong number of arguments: " + args.length);
+          gameBox.getLogger().log(Level.WARNING, "DISPATCH_PLAYER_COMMAND has the wrong number of arguments: " + args.length);
           return false;
         }
         if (!(event.getWhoClicked() instanceof Player)) {
@@ -333,7 +333,7 @@ public abstract class AGui implements GameBoxHolder {
           money = Integer.parseInt(args[3]);
         } catch (NumberFormatException exception) {
           exception.printStackTrace();
-          Bukkit.getLogger().log(Level.WARNING, "a shop item had wrong cost-info args: " + Arrays.asList(args));
+          gameBox.getLogger().log(Level.WARNING, "a shop item had wrong cost-info args: " + Arrays.asList(args));
           return false;
         }
 

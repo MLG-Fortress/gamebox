@@ -158,8 +158,8 @@ public class GuiManager {
    */
   public void registerGameGUI(GameGui gui) {
     if (gui.getArgs() == null || gui.getArgs().length != 2) {
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + ChatColor.RED + " Error while registering a gui");
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + ChatColor.RED + "   missing args");
+      plugin.getLogger().severe(" Error while registering a gui");
+      plugin.getLogger().severe("   missing args");
       return;
     }
     String[] args = gui.getArgs();
@@ -176,8 +176,8 @@ public class GuiManager {
    */
   public void registerMainGameGUI(GameGui gui, ItemStack button) {
     if (gui.getArgs() == null || gui.getArgs().length != 2) {
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + ChatColor.RED + " Error while registering a gui");
-      Bukkit.getConsoleSender().sendMessage(lang.PREFIX + ChatColor.RED + "   missing args");
+      plugin.getLogger().severe(" Error while registering a gui");
+      plugin.getLogger().severe("   missing args");
       return;
     }
     String[] args = gui.getArgs();

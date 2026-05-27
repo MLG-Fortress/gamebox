@@ -57,8 +57,8 @@ public class ShopManager {
     if (!shop.isConfigurationSection("shop")
             || !shop.isConfigurationSection("shop.button")
             || !shop.isConfigurationSection("shop.categories")) {
-      Bukkit.getLogger().log(Level.WARNING, "The shop is not correctly set up!");
-      Bukkit.getLogger().log(Level.WARNING, "Disabling tokens!");
+      gameBox.getLogger().log(Level.WARNING, "The shop is not correctly set up!");
+      gameBox.getLogger().log(Level.WARNING, "Disabling tokens!");
       GameBoxSettings.tokensEnabled = false;
       return;
     }
@@ -71,11 +71,11 @@ public class ShopManager {
     String materialData = shop.getString("shop.button.materialData", ItemStackUtility.CHEST_MINECART.toString());
     ItemStack mainItem = ItemStackUtility.getItemStack(materialData);
     if (mainItem == null) {
-      Bukkit.getLogger().log(Level.WARNING, "Invalid shop button materialData '" + materialData + "' in tokenShop.yml. Using CHEST_MINECART instead.");
+      gameBox.getLogger().log(Level.WARNING, "Invalid shop button materialData '" + materialData + "' in tokenShop.yml. Using CHEST_MINECART instead.");
       mainItem = ItemStackUtility.getItemStack(ItemStackUtility.CHEST_MINECART.toString());
     }
     if (mainItem == null) {
-      Bukkit.getLogger().log(Level.WARNING, "Failed to load fallback shop button material CHEST_MINECART. Using CHEST instead.");
+      gameBox.getLogger().log(Level.WARNING, "Failed to load fallback shop button material CHEST_MINECART. Using CHEST instead.");
       mainItem = new ItemStack(Material.CHEST);
     }
     if (shop.getBoolean("shop.button.glow"))
@@ -152,7 +152,7 @@ public class ShopManager {
       try {
         page = Integer.parseInt(args[1]);
       } catch (NumberFormatException exception) {
-        Bukkit.getLogger().log(Level.SEVERE, "failed to open shop page due to corrupted args!");
+        gameBox.getLogger().log(Level.SEVERE, "failed to open shop page due to corrupted args!");
         return false;
       }
       GameBox.openingNewGUI = true;
@@ -166,8 +166,8 @@ public class ShopManager {
       }
     }
     if (saved) gameBox.getPluginManager().leaveGameBox(whoClicked);
-    Bukkit.getLogger().log(Level.SEVERE, "trying to open a shop page failed");
-    Bukkit.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
+    gameBox.getLogger().log(Level.SEVERE, "trying to open a shop page failed");
+    gameBox.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
     whoClicked.sendMessage("Error");
     return false;
   }

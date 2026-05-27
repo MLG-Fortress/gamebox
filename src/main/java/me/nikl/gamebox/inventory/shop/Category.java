@@ -104,9 +104,9 @@ public class Category {
       }
       ItemStack buttonItem = getButtonItem(itemStack, pageSection, itemKey);
       if (buttonItem == null) {
-        Bukkit.getConsoleSender().sendMessage(plugin.lang.PREFIX + ChatColor.RED + " problem in Shop: " + ChatColor.GREEN + "tokenShop.yml " + pageSection.getCurrentPath() + "." + itemKey);
-        Bukkit.getConsoleSender().sendMessage(plugin.lang.PREFIX + ChatColor.RED + " Item AND PresentItem are not defined or not valid");
-        Bukkit.getConsoleSender().sendMessage(plugin.lang.PREFIX + ChatColor.RED + "   Skipping...");
+        plugin.getLogger().warning(" problem in Shop: tokenShop.yml " + pageSection.getCurrentPath() + "." + itemKey);
+        plugin.getLogger().warning(" Item AND PresentItem are not defined or not valid");
+        plugin.getLogger().warning("   Skipping...");
         continue;
       }
       // load shop item

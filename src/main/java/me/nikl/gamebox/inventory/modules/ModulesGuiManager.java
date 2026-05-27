@@ -238,8 +238,8 @@ public class ModulesGuiManager implements Listener {
 
         if (!modulesListGui.openPage(whoClicked, pageNumber)) {
             if (saved) gameBox.getPluginManager().leaveGameBox(whoClicked);
-            Bukkit.getLogger().log(Level.SEVERE, "trying to open a modules page failed");
-            Bukkit.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
+            gameBox.getLogger().log(Level.SEVERE, "trying to open a modules page failed");
+            gameBox.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
             whoClicked.sendMessage("Error");
             return false;
         }
@@ -288,14 +288,14 @@ public class ModulesGuiManager implements Listener {
         try {
             pageNumber = Integer.parseInt(args[1]);
         } catch (NumberFormatException exception) {
-            Bukkit.getLogger().log(Level.SEVERE, "failed to open module detail page due to corrupted args!");
+            gameBox.getLogger().log(Level.SEVERE, "failed to open module detail page due to corrupted args!");
             return false;
         }
 
         if (!moduleDetails.openDetailsView(whoClicked, args[0],pageNumber)) {
             if (saved) gameBox.getPluginManager().leaveGameBox(whoClicked);
-            Bukkit.getLogger().log(Level.SEVERE, "trying to open a modules detail view failed");
-            Bukkit.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
+            gameBox.getLogger().log(Level.SEVERE, "trying to open a modules detail view failed");
+            gameBox.getLogger().log(Level.SEVERE, "args: " + Arrays.asList(args));
             whoClicked.sendMessage("Error");
             return false;
         }

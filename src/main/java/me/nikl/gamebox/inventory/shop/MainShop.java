@@ -34,8 +34,8 @@ class MainShop extends Shop {
       ConfigurationSection category = shop.getConfigurationSection("shop.categories." + cat);
       buttonItem = ItemStackUtility.getItemStack(category.getString("materialData"));
       if (buttonItem == null) {
-        Bukkit.getLogger().log(Level.WARNING, " error loading:   shop.categories." + cat);
-        Bukkit.getLogger().log(Level.WARNING, "     invalid material data");
+        gameBox.getLogger().log(Level.WARNING, " error loading:   shop.categories." + cat);
+        gameBox.getLogger().log(Level.WARNING, "     invalid material data");
         continue;
       }
       if (category.getBoolean("glow")) {

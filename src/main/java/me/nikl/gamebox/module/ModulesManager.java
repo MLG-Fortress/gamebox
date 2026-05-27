@@ -34,6 +34,7 @@ import me.nikl.gamebox.utility.FileUtility;
 import me.nikl.gamebox.utility.ModuleUtility;
 import me.nikl.gamebox.utility.versioning.SemanticVersion;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -379,7 +380,7 @@ public class ModulesManager implements Listener {
         }
         Map<String, String> context = new HashMap<>();
         context.put("amount", String.valueOf(autoUpdateEnabled.size()));
-        gameBox.lang.sendMessage(Bukkit.getConsoleSender(), gameBox.lang.MODULES_AUTO_UPDATING_INFO, context);
+        logLanguageMessage(gameBox.lang.replaceContext(gameBox.lang.MODULES_AUTO_UPDATING_INFO, context));
         int skippCount = 0;
         for (GameBoxModule module : autoUpdateEnabled) {
             Map<String, String> moduleContext = new HashMap<>();
@@ -392,18 +393,22 @@ public class ModulesManager implements Listener {
                 if (!latestVersion.isCompatibleUpdateFor(module.getModuleData().getVersionData().getVersion())) {
                     skippCount ++;
                     List<String> messages = gameBox.lang.replaceContext(gameBox.lang.MODULE_UPDATE_IS_MAJOR, moduleContext);
-                    messages.forEach(msg -> Bukkit.getConsoleSender().sendMessage(msg));
+                    messages.forEach(this::logLanguageMessage);
                     continue;
                 }
-                gameBox.lang.sendMessage(Bukkit.getConsoleSender(), gameBox.lang.MODULE_AUTO_UPDATE, moduleContext);
+                logLanguageMessage(gameBox.lang.replaceContext(gameBox.lang.MODULE_AUTO_UPDATE, moduleContext));
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), String.format("gba m u %s %s", module.getIdentifier(), latestVersion.toString()));
             } catch (GameBoxCloudException e) {
                 skippCount ++;
-                gameBox.lang.sendMessage(Bukkit.getConsoleSender(), gameBox.lang.MODULE_AUTO_UPDATE_NOT_IN_CLOUD, moduleContext);
+                logLanguageMessage(gameBox.lang.replaceContext(gameBox.lang.MODULE_AUTO_UPDATE_NOT_IN_CLOUD, moduleContext));
             }
         }
         context.put("amount", String.valueOf(autoUpdateEnabled.size() - skippCount));
         context.put("skipped", String.valueOf(skippCount));
-        gameBox.lang.sendMessage(Bukkit.getConsoleSender(), gameBox.lang.MODULE_AUTO_UPDATE_FOOTER, context);
+        logLanguageMessage(gameBox.lang.replaceContext(gameBox.lang.MODULE_AUTO_UPDATE_FOOTER, context));
+    }
+
+    private void logLanguageMessage(String message) {
+        gameBox.getLogger().info(ChatColor.stripColor(message));
     }
 }

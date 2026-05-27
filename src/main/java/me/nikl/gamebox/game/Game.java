@@ -168,13 +168,13 @@ public abstract class Game {
       for (String buttonID : gameButtons.getKeys(false)) {
         buttonSec = gameButtons.getConfigurationSection(buttonID);
         if (!buttonSec.isString("materialData")) {
-          Bukkit.getLogger().log(Level.WARNING, " missing material data under: gameBox.gameButtons." + buttonID + "        can not load the button");
+          gameBox.getLogger().log(Level.WARNING, " missing material data under: gameBox.gameButtons." + buttonID + "        can not load the button");
           continue;
         }
         ItemStack mat = ItemStackUtility.getItemStack(buttonSec.getString("materialData"));
         if (mat == null) {
-          Bukkit.getLogger().log(Level.WARNING, " error loading: gameBox.gameButtons." + buttonID);
-          Bukkit.getLogger().log(Level.WARNING, "     invalid material data");
+          gameBox.getLogger().log(Level.WARNING, " error loading: gameBox.gameButtons." + buttonID);
+          gameBox.getLogger().log(Level.WARNING, "     invalid material data");
           continue;
         }
         Button button = new Button(mat);
@@ -209,7 +209,7 @@ public abstract class Game {
         if (buttonSec.isInt("slot")) {
           int slot = buttonSec.getInt("slot");
           if (slot < 0 || slot >= gameGuiSlots) {
-            Bukkit.getLogger().log(Level.WARNING, "the slot of gameBox.gameButtons." + buttonID
+            gameBox.getLogger().log(Level.WARNING, "the slot of gameBox.gameButtons." + buttonID
                     + " is out of the inventory range (0 - " + (gameGuiSlots - 1) + ")");
             gameGui.setButton(button);
           } else {
@@ -291,7 +291,7 @@ public abstract class Game {
         if (buttonSec.isInt("slot")) {
           int slot = buttonSec.getInt("slot");
           if (slot < 0 || slot >= gameGuiSlots) {
-            Bukkit.getLogger().log(Level.WARNING, "the slot of gameBox.topListButtons." + buttonID + " is out of the inventory range (0 - 53)");
+            gameBox.getLogger().log(Level.WARNING, "the slot of gameBox.topListButtons." + buttonID + " is out of the inventory range (0 - 53)");
             gameGui.setButton(button);
             break setTheButton;
           }
@@ -346,13 +346,13 @@ public abstract class Game {
   }
 
   public void debug(String debugMessage) {
-    if (GameBox.debug) Bukkit.getLogger().info(gameLang.PREFIX + " " + debugMessage);
+    if (GameBox.debug) gameBox.getLogger().info(gameLang.PREFIX + " " + debugMessage);
   }
 
   public void debug(ArrayList<String> debugMessages) {
     if (!GameBox.debug) return;
     for (String message : debugMessages) {
-      Bukkit.getLogger().info(gameLang.PREFIX + " " + message);
+      gameBox.getLogger().info(gameLang.PREFIX + " " + message);
     }
   }
 

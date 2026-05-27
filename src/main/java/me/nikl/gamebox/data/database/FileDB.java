@@ -71,7 +71,7 @@ public class FileDB extends DataBase {
           try {
             data.save(dataFile);
           } catch (IOException e) {
-            Bukkit.getLogger().log(Level.SEVERE, "failed to save statistics (async)");
+            plugin.getLogger().log(Level.SEVERE, "failed to save statistics (async)");
             e.printStackTrace();
           }
           GameBox.debug(" ...done");
@@ -81,7 +81,7 @@ public class FileDB extends DataBase {
       try {
         this.data.save(dataFile);
       } catch (IOException e) {
-        Bukkit.getLogger().log(Level.SEVERE, "failed to save statistics");
+        plugin.getLogger().log(Level.SEVERE, "failed to save statistics");
         e.printStackTrace();
       }
     }
@@ -112,7 +112,7 @@ public class FileDB extends DataBase {
         value = value + oldScore;
         break;
       default:
-        Bukkit.getLogger().log(Level.WARNING, "trying to save unsupported statistics: " + saveType.toString());
+        plugin.getLogger().log(Level.WARNING, "trying to save unsupported statistics: " + saveType.toString());
         return;
     }
     // top value of player was corrected
@@ -176,7 +176,7 @@ public class FileDB extends DataBase {
         UUID uuid1 = UUID.fromString(uuid);
         valuesMap.put(uuid1, data.getDouble(uuid + "." + GAMES_STATISTICS_NODE + "." + topListIdentifier));
       } catch (IllegalArgumentException exception) {
-        Bukkit.getLogger().log(Level.WARNING, "failed to load a player score due to a malformed UUID (" + topListIdentifier + ")");
+        plugin.getLogger().log(Level.WARNING, "failed to load a player score due to a malformed UUID (" + topListIdentifier + ")");
       }
     }
     return valuesMap;

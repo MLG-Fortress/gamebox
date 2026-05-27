@@ -164,13 +164,13 @@ public class PluginManager implements Listener {
   private void getHub() {
     ConfigurationSection hubSec = config.getConfigurationSection("hubMode");
     if (!hubSec.isString("item.materialData") || !hubSec.isString("item.displayName")) {
-      Bukkit.getLogger().log(Level.WARNING, " missing configuration in the 'hubMode' section");
+      gamebox.getLogger().log(Level.WARNING, " missing configuration in the 'hubMode' section");
       GameBoxSettings.hubModeEnabled = false;
       return;
     }
     hubItem = ItemStackUtility.getItemStack(hubSec.getString("item.materialData", "CHEST"));
     if (hubItem == null) {
-      Bukkit.getLogger().log(Level.WARNING, " invalid material in the 'hubMode' section");
+      gamebox.getLogger().log(Level.WARNING, " invalid material in the 'hubMode' section");
       GameBoxSettings.hubModeEnabled = false;
       return;
     }
@@ -464,15 +464,15 @@ public class PluginManager implements Listener {
   }
 
   private void handleLeftoverSavedContents() {
-    Bukkit.getLogger().log(Level.SEVERE, "-------------------------------------------------------------------");
-    Bukkit.getLogger().log(Level.SEVERE, "There were left-over inventories after restoring for all players");
+    gamebox.getLogger().log(Level.SEVERE, "-------------------------------------------------------------------");
+    gamebox.getLogger().log(Level.SEVERE, "There were left-over inventories after restoring for all players");
     String fileName = LocalDateTime.now().toString();
     // get rid of the milliseconds
     // the name now only includes the date and time
     fileName = fileName.split("\\.")[0];
     fileName = fileName.replace(":", "_");
     fileName += ".txt";
-    Bukkit.getLogger().log(Level.SEVERE, "Saving those contents in a log file in the folder Logs as: " + fileName);
+    gamebox.getLogger().log(Level.SEVERE, "Saving those contents in a log file in the folder Logs as: " + fileName);
     File logFile = new File(gamebox.getDataFolder().toString() + File.separatorChar + "Logs" + File.separatorChar + fileName);
     logFile.getParentFile().mkdirs();
     try {
@@ -499,9 +499,9 @@ public class PluginManager implements Listener {
     try {
       log.save(logFile);
     } catch (IOException e) {
-      Bukkit.getLogger().log(Level.SEVERE, "Could not save Log", e);
+      gamebox.getLogger().log(Level.SEVERE, "Could not save Log", e);
     }
-    Bukkit.getLogger().log(Level.SEVERE, "-------------------------------------------------------------------");
+    gamebox.getLogger().log(Level.SEVERE, "-------------------------------------------------------------------");
   }
 
   public GameBox getGamebox() {

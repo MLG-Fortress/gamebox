@@ -84,7 +84,7 @@ public class FileUtility {
           // subfolder in language folder
           if (!pathParts[1].equalsIgnoreCase(module.getGameId())) continue;
           String fileName = pathParts[pathParts.length - 1];
-          if (fileName.equals("en_GB.yml")) {
+          if (fileName.equals("lang_en.yml")) {
             foundDefaultLang = true;
           }
           String gbPath = gameBox.getDataFolder().toString() + File.separatorChar
@@ -130,7 +130,7 @@ public class FileUtility {
       jar.close();
       if (!foundDefaultLang) {
         gameBox.warning(" Failed to locate default language file for the module '" + module.getGameId() + "'");
-        gameBox.warning(" " + jar.getName() + " is missing the file 'language/" + module.getGameId() + "/en_GB.yml'");
+        gameBox.warning(" " + jar.getName() + " is missing the file 'language/" + module.getGameId() + "/lang_en.yml'");
       }
       if (!foundConfig) {
         gameBox.warning(" Failed to locate the configuration of the module '" + module.getGameId() + "'");

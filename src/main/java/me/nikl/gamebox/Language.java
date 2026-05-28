@@ -78,7 +78,7 @@ public abstract class Language {
    */
   protected void getLangFile(FileConfiguration config) {
     // load default language
-    String defaultLangName = gameId.equals(GameBox.MODULE_GAMEBOX) ? "language/en_GB.yml" : "language/" + gameId + "/en_GB.yml";
+    String defaultLangName = gameId.equals(GameBox.MODULE_GAMEBOX) ? "language/en_GB.yml" : "language/" + gameId + "/lang_en.yml";
     defaultLanguage = YamlConfiguration.loadConfiguration(
             new InputStreamReader(this.jarFile == null
                     ? plugin.getResource(defaultLangName)

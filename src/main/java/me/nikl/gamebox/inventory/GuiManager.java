@@ -240,10 +240,12 @@ public class GuiManager {
   }
 
   public void unregisterGame(String gameID) {
-    for (Map.Entry<String, GameGui> gui : gameGuis.get(gameID).entrySet()) {
-      gui.getValue().close();
+    if (gameGuis.containsKey(gameID)) {
+      for (Map.Entry<String, GameGui> gui : gameGuis.get(gameID).entrySet()) {
+        gui.getValue().close();
+      }
+      gameGuis.remove(gameID);
     }
-    gameGuis.remove(gameID);
     mainGui.unregisterGame(gameID);
   }
 
